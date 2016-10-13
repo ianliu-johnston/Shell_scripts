@@ -1,0 +1,4 @@
+alias gstat="git status"
+alias gadd="git add"
+alias gicom="git commit -m"
+alias gitup="git push origin master"
