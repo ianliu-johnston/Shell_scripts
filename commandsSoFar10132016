@@ -1,0 +1,4 @@
+cd, ls, pwd, less, file, ln, cp, mv, rm, mkdir, type, which, help, man
+chmod, sudo, su, chown, chgrp, id, groups, whoami, adduser, useradd, addgroup
+printenv, set, unset, export, alias, unalias, ., source, printf
+ascii
