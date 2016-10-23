@@ -6,3 +6,5 @@ alias godmode="sudo su"
 alias bettychecks="./_betty-s * && ./_betty-d *"
 alias wheres_betty="ln -s ~/Betty/betty-doc.pl _betty-d && ln -s ~/Betty/betty-style.pl _betty-s && echo In Da haus"
 alias supergcc="gcc -Wall -Werror -Wextra -pedantic"
+alias emacs="emacs -nw"
+

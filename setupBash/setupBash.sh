@@ -5,6 +5,8 @@ mv Betty ~/
 cp bash_aliases ~/.bash_aliases
 cp emacsrc ~/.emacsrc
 cp vimrc ~/.vimrc
+cp xmodmap ~/.xmodmap
+xmodmap ~/.xmodmap
 mkdir ~/TEST
 echo 'export T=~/TEST' >> ~/.profile
 sed -i 's/\#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
