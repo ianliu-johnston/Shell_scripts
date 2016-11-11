@@ -10,6 +10,7 @@ set number
 let mapleader = "?"
 noremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 noremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+inoremap jk <esc>
 map <F2> :setlocal paste!<cr>
 map <F3> :echo 'Current time: ' . strftime('%c')<cr>
 " Status Line
