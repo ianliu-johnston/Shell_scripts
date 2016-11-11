@@ -10,12 +10,14 @@ set number
 let mapleader = "?"
 noremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 noremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
-inoremap jk <esc>
+inoremap jjj <esc>
+vnoremap jjj <esc>
+map <space> viw
 map <F2> :setlocal paste!<cr>
 map <F3> :echo 'Current time: ' . strftime('%c')<cr>
 " Status Line
 set laststatus=2
-set statusline=%1{HasPaste()}\ %F%m%r%h\ \ \ Row:%l,Col:%c\ \ \ %15{strftime(\"%a,\ %b-%d-%Y\")}
+set statusline=%(Row:%l,Col:%c,Byte:%o%)\ ASCII:%b\ \ %(%4{HasPaste()}%)\ \ %=%t\ \ \ \ %4{strftime(\"%a,\ %b-%d-%Y\")}
 " Functions
 func! DeleteTrailingWS()
 	exe "normal mz"
