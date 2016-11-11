@@ -1,5 +1,30 @@
+" Vanity
+colorscheme darkblue
+" Formatting for C development
 set tabstop=8 shiftwidth=8
 set smartindent
 set cindent
 syntax enable
 set number
+" Key mapping
+let mapleader = "?"
+noremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+noremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+map <F2> :setlocal paste!<cr>
+map <F3> :echo 'Current time: ' . strftime('%c')<cr>
+" Status Line
+set laststatus=2
+set statusline=%1{HasPaste()}\ %F%m%r%h\ \ \ Row:%l,Col:%c\ \ \ %15{strftime(\"%a,\ %b-%d-%Y\")}
+" Functions
+func! DeleteTrailingWS()
+	exe "normal mz"
+	%s/\s\+$//ge
+	exe "normal `z"
+endfunc
+autocmd BufWrite *.c :call DeleteTrailingWS()
+func! HasPaste()
+	if &paste
+		return 'Paste Mode'
+	endif
+	return ''
+endfunc
