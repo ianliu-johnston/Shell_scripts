@@ -19,6 +19,7 @@ map <F3> :echo 'Current time: ' . strftime('%c')<cr>
 set laststatus=2
 set statusline=%(Row:%l,Col:%c,Byte:%o%)\ ASCII:%b\ \ %(%4{HasPaste()}%)\ \ %=%t\ \ \ \ %4{strftime(\"%a,\ %b-%d-%Y\")}
 " Functions
+runtime! ftplugin/man.vim
 func! DeleteTrailingWS()
 	exe "normal mz"
 	%s/\s\+$//ge
