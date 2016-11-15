@@ -1,5 +1,6 @@
 #!/bin/bash
 sudo apt-get -y install emacs
+sudo apt-get -y install radare2
 git clone https://github.com/holbertonschool/Betty.git ~/Betty
 cp bash_aliases ~/.bash_aliases
 cp emacsrc ~/.emacsrc
