@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo apt-get -y install emacs
 sudo apt-get -y install radare2
+sudo apt-get -y install valgrind
 git clone https://github.com/holbertonschool/Betty.git ~/Betty
 cp bash_aliases ~/.bash_aliases
 cp emacsrc ~/.emacsrc
