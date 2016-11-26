@@ -1,17 +1,20 @@
 " Vanity
 colorscheme darkblue
 " Formatting for C development
-set tabstop=8 shiftwidth=8
+set tabstop=4 shiftwidth=4
 set smartindent
 set cindent
 syntax enable
 set number
 " Key mapping
-let mapleader = "?"
+let mapleader = "y" 
 noremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 noremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
-inoremap jjj <esc>
-vnoremap jjj <esc>
+noremap <leader>* O/*<esc>jo*/<esc>j0
+noremap <leader>( ^i(<esc>$a)<esc>
+noremap <leader>{ O{<esc>jo}<esc>j0
+inoremap fff <esc>
+vnoremap fff <esc>
 map <space> viw
 map <F2> :setlocal paste!<cr>
 map <F3> :echo 'Current time: ' . strftime('%c')<cr>
