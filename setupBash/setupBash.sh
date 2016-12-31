@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt-get update
 sudo apt-get -y install emacs radare2 valgrind p7zip-full
 git clone https://github.com/holbertonschool/Betty.git ~/Betty
 cp bash_aliases ~/.bash_aliases
