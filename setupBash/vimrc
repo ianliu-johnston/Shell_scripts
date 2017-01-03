@@ -1,11 +1,14 @@
 " Vanity
-colorscheme darkblue
+colorscheme desert
 " Formatting for C development
-set tabstop=4 shiftwidth=4
-set smartindent
-set cindent
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+" set smartindent
+" set cindent
 syntax enable
 set number
+filetype plugin indent on
 " Key mapping
 let mapleader = "y" 
 noremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
@@ -29,6 +32,15 @@ func! DeleteTrailingWS()
 	exe "normal `z"
 endfunc
 autocmd BufWrite *.c :call DeleteTrailingWS()
+autocmd BufWrite *.h :call DeleteTrailingWS()
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.sh :call DeleteTrailingWS()
+func! ChangeTabToSpace()
+	exe "normal mz"
+	%s/\t/    /ge
+	exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call ChangeTabToSpace()
 func! HasPaste()
 	if &paste
 		return 'Paste Mode'

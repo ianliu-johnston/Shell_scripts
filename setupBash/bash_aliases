@@ -8,4 +8,4 @@ alias bettyd="./_betty-d *.c"
 alias wheres_betty="ln -s ~/Betty/betty-doc.pl _betty-d && ln -s ~/Betty/betty-style.pl _betty-s && echo In Da haus"
 alias supergcc="gcc -Wall -Werror -Wextra -pedantic"
 alias emacs="emacs -nw"
-
+alias python="/usr/local/bin/python3.4"
