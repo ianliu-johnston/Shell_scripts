@@ -1,0 +1,2 @@
+wget -q https://raw.githubusercontent.com/ianliu-johnston/holbertonschool-higher_level_programming/master/0x02-python-import_modules/easy_print3_5
+head -c -1 -q easy_print3_5
