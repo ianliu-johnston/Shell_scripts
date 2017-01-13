@@ -10,7 +10,8 @@ apt-get purge -y sylpheed sylpheed-doc sylpheed-i18n sylpheed-plugins
 apt autoremove
 rm -v ~/Pictures ~/Templates ~/Videos
 git clone https://github.com/ianliu-johnston/BatchScripts.git ~/Documents/BatchScripts
-git clone https://github.com/ianliu-johnston/holbertonschool-low_level_programming.git
+git clone https://github.com/ianliu-johnston/holbertonschool-low_level_programming.git ~/Documents/holbertonschool-low_level_programming
+git clone https://github.com/ianliu-johnston/holbertonschool-higher_level_programming.git ~/Documents/holbertonschool-higher_level_programming
 cd ~/BatchScripts/setupBash
 ./setupBash.sh
 echo "alias battinfo='upower -i $(upower -e | grep \"battery\") | grep -E \"percent| time\"'" >> ~/.bash_aliases
