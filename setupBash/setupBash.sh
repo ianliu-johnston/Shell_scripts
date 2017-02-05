@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt-get update
-sudo apt-get -y install emacs radare2 valgrind p7zip-full
+sudo apt-get -y install emacs radare2 valgrind p7zip-full tshark
 git clone https://github.com/ianliu-johnston/holbertonschool-low_level_programming.git
 git clone https://github.com/ianliu-johnston/holbertonschool-higher_level_programming.git
 git clone https://github.com/holbertonschool/Betty.git ~/Betty
