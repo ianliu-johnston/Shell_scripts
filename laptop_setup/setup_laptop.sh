@@ -30,6 +30,7 @@ echo "Setting up Bash customizations"
 cp bash_aliases ~/.bash_aliases
 cp Xmodmap ~/.bash_aliases
 cp emacsrc ~/.emacsrc
+cp tmux.conf ~/.tmux.conf
 cp vimrc ~/.vimrc
 cp -r vim ~/.vim
 sed -i 's/\#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
