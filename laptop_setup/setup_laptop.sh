@@ -7,10 +7,10 @@ echo "installing utils"
 apt-get install -y git p7zip-full emacs exfat-fuse exfat-utils vlc tmux
 apt-get install -y pavucontrol virtualbox vagrant
 echo "Installing dev tools"
-apt-get install -y gdb radare2 valgrind gcc-4.8 gcc docker-engine
+apt-get install -y gdb radare2 valgrind gcc-4.8 gcc docker docker.io
 if [[ "$1" == "h4xx0r"]]; then
 	echo "133t mode"
-	apt-get install -y hydra aircrack-ng nmap tor privoxy whois
+	apt-get install -y hydra aircrack-ng nmap tor privoxy whois john
 fi
 # Uninstall any I don't need
 echo "removing unnecessary apps + dirs"
@@ -25,6 +25,9 @@ echo "Setting up Bash customizations"
 git clone https://github.com/ianliu-johnston/BatchScripts.git ~/Documents/BatchScripts
 cd ~/BatchScripts/setupBash
 ./setupBash.sh
+# Setup python dependencies that I like.
+sudo pip install fabric
+# Setup custom aliases
 echo "alias battinfo='upower -i $(upower -e | grep \"battery\") | grep -E \"percent| time\"'" >> ~/.bash_aliases
 echo "alias padoff=\"xinput --disable 12\"" >> ~/.bash_aliases
 echo "alias padon=\"xinput --enable 12\"" >> ~/.bash_aliases
