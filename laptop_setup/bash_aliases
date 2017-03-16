@@ -9,6 +9,3 @@ alias wheres_betty="ln -s ~/Betty/betty-doc.pl _betty-d && ln -s ~/Betty/betty-s
 alias supergcc="gcc -Wall -Werror -Wextra -pedantic"
 alias emacs="emacs -nw"
 alias python="/usr/local/bin/python3.4"
-alias battinfo='upower -i $(upower -e | grep \"battery\") | grep -E \"percent| time\"'
-alias padoff="xinput --disable 12"
-alias padon="xinput --enable 12"

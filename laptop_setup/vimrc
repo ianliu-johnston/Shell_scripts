@@ -1,0 +1,49 @@
+" Vanity
+colorscheme desert
+" Formatting for C development
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+" set smartindent
+" set cindent
+syntax enable
+set number
+filetype plugin indent on
+" Key mapping
+let mapleader = "y" 
+noremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+noremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+noremap <leader>* O/*<esc>jo*/<esc>j0
+noremap <leader>( ^i(<esc>$a)<esc>
+noremap <leader>{ O{<esc>jo}<esc>j0
+inoremap fff <esc>
+vnoremap fff <esc>
+map <space> viw
+map <F2> :setlocal paste!<cr>
+map <F3> :echo 'Current time: ' . strftime('%c')<cr>
+" Status Line
+set laststatus=2
+set statusline=%(Row:%l,Col:%c,Byte:%o%)\ ASCII:%b\ \ %(%4{HasPaste()}%)\ \ %=%t\ \ \ \ %4{strftime(\"%a,\ %b-%d-%Y\")}
+" Functions
+runtime! ftplugin/man.vim
+func! DeleteTrailingWS()
+	exe "normal mz"
+	%s/\s\+$//ge
+	exe "normal `z"
+endfunc
+autocmd BufWrite *.c :call DeleteTrailingWS()
+autocmd BufWrite *.h :call DeleteTrailingWS()
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.sh :call DeleteTrailingWS()
+func! ChangeTabToSpace()
+	exe "normal mz"
+	%s/\t/    /ge
+	exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call ChangeTabToSpace()
+func! HasPaste()
+	if &paste
+		return 'Paste Mode'
+	endif
+	return ''
+endfunc
