@@ -1,7 +1,14 @@
 #!/bin/bash
 sudo apt-get update
-sudo apt-get -y install emacs radare2 valgrind p7zip-full tshark shellcheck python3-pip
+sudo apt-get -y install emacs radare2 valgrind p7zip-full tshark shellcheck python3-pip gdb docker docker.io shellcheck
 sudo pip3 install pep8
+if [[ "$1" -eq "sql" ]]; then
+	MYSQL_APT=mysql-apt-config_0.8.3-1_all.deb
+	wget https://dev.mysql.com/get/$MYSQL_APT
+	sudo dpkg -i $MYSQL_APT
+	sudo apt-get update
+	sudo apt-get -y install mysql-server-5.7
+fi
 git clone https://github.com/holbertonschool/Betty.git ~/Betty
 cp bash_aliases ~/.bash_aliases
 cp emacsrc ~/.emacsrc
