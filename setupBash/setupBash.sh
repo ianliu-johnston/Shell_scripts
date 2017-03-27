@@ -9,7 +9,6 @@ if [[ "$1" -eq "sql" ]]; then
 	sudo apt-get update
 	sudo apt-get -y install mysql-server-5.7
 fi
-sudo apt-get -y install emacs radare2 valgrind p7zip-full tshark shellcheck python3-pip
 ###### Setup for python packages ######
 sudo apt-get -y install python3-dev libmysqlclient-dev
 sudo -H pip3 install mysqlclient
