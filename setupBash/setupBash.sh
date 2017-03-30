@@ -11,7 +11,7 @@ MYSQL_APT=mysql-apt-config_0.8.3-1_all.deb
 wget https://dev.mysql.com/get/$MYSQL_APT
 sudo dpkg -i $MYSQL_APT
 sudo apt-get update
-sudo apt-get -y install mysql-server-5.7
+sudo apt-get -y install mysql-server
 sudo apt-get -y install python3-dev libmysqlclient-dev
 sudo -H pip3 install mysqlclient
 sudo -H pip3 install sqlalchemy
