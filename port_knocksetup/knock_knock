@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#Usage: ./knock_knock <ip_address>
+#Another method without the knock
+#for x in 6000,7000,8000; do
+#	nmap -Pn --host_timeout 201 --max-retries 0 -p $x $1;
+#done
+knock $1 6000 7000 8000
+ssh -i ~/.ssh/<keyfile> -p 2222 <user>@$1
