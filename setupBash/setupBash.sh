@@ -11,7 +11,7 @@ MYSQL_APT=mysql-apt-config_0.8.3-1_all.deb
 wget https://dev.mysql.com/get/$MYSQL_APT
 sudo dpkg -i $MYSQL_APT
 sudo apt-get update
-sudo apt-get -y install mysql-server
+sudo apt-get install mysql-server
 sudo apt-get -y install python3-dev libmysqlclient-dev
 sudo -H pip3 install mysqlclient
 sudo -H pip3 install sqlalchemy
@@ -29,7 +29,7 @@ cp vimrc ~/.vimrc
 cp pre-commit ~
 cp -r vim ~/.vim
 sed -i 's/\#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
-echo 'export PS1="\[\033[40m\A \033[00m\033[1;40;32m \u \033[00m\]\[\033[0;37;44m\] \W \[\033[00m\]"' >> ~/.bashrc
+echo 'export PS1="\[\e]0; \u: \W\a\]\[\033[01;40m\]\A \u:\[\033[00m\]\[\033[01;44m\]\W\[\033[00m\]~> "' >> ~/.bashrc
 echo 'export TZ="/usr/share/zoneinfo/America/Los_Angeles"' >> ~/.bashrc
 echo -e "betty() {\n    /home/$(whoami)/Betty/betty-doc.pl \$1\n     /home/$(whoami)/Betty/betty-style.pl \$1\n}\n" >> ~/.bashrc
 echo -e "htmlstyle(){\n    home/$(whoami)/W3C-Validator/w3c_validator.py \$1\n}\n" >> ~/.bashrc
