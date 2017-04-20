@@ -3,75 +3,118 @@
 #                                                      #
 # This pre-commit hook will run style checks           #
 # on every bash script, .c or .h file                  #
+# python file, or html file,                           #
 # that you push to a git repository,                   # 
 # and will stop your commit if any                     #
 # file fails the checks.                               #
 #                                                      #
 ########################################################
-EXIT=0
 ############# Check C files and header files ###########
-CFILES=$(git diff --cached --name-only | grep -e ".c" -e ".h")
-if [[ ! -z $CFILES ]]; then
-	echo "Checking style on C files"
-	echo "$CFILES"
-	if [[ ! -a ~/Betty ]]; then
-		echo "Cannot find betty style checks. Try running this command:"
-		echo "git clone https://github.com/holbertonschool/Betty.git ~/Betty"
-		exit 1
+c_tests(){
+	CFILES=$(git diff --cached --name-only 2> /dev/null | grep -e "\.c$" -e "\.h$")
+	if [[ ! -z $CFILES ]]; then
+		echo "Checking style on C files"
+		echo "$CFILES"
+		if [[ ! -a ~/Betty ]]; then
+			echo "Cannot find betty style checks. Try running this command:"
+			echo "git clone https://github.com/holbertonschool/Betty.git ~/Betty"
+			exit 1
+		else
+			bettycheck="$(/home/$(whoami)/Betty/betty-doc.pl $CFILES 2>&1)$(/home/$(whoami)/Betty/betty-style.pl $CFILES 2>&1)"
+			if [[ $bettycheck =~ WARNING ]] || [[ $bettycheck =~ ERROR ]] ||
+			  [[ $bettycheck =~ warning ]] || [[ $bettycheck =~ error ]] ;
+			then
+				echo -e "\e[31mFails Betty style checks:"
+				echo -e "Use --no-verify to push anyways.\e[0m"
+				EXIT=1
+			else
+				echo -e "\e[32mC Style Checks Pass!\e[0m"
+			fi
+		fi
 	fi
-
-	bettycheck="$(/home/$(whoami)/Betty/betty-doc.pl $CFILES 2>&1)$(/home/$(whoami)/Betty/betty-style.pl $CFILES 2>&1)"
-	if [[ $bettycheck =~ WARNING ]] || [[ $bettycheck =~ ERROR ]] ||
-	  [[ $bettycheck =~ warning ]] || [[ $bettycheck =~ error ]] ;
-	then
-		echo -e "\e[31mFails Betty style checks:"
-		echo -e "Use --no-verify to push anyways.\e[0m"
-		git reset
-		EXIT=1
-	else
-		echo -e "\e[32mC Style Checks Pass!\e[0m"
-	fi
-fi
+}
 ############# Check Bash scripts #######################
-SHFILES=$(head -v -n1 $(git diff --cached --name-only) 2> /dev/null | grep "bash" -B1 | grep "==>" | cut -d ' ' -f2)
-if [[ ! -z $SHFILES ]]; then
-	echo "Checking style on Bash Scripts: "
-	echo $SHFILES
-	if [[ -z $(which shellcheck) ]]; then
-		echo "shellcheck is not installed. Try running this command:"
-		echo "sudo apt-get install shellcheck"
-		exit 1
+bash_tests(){
+	SHFILES=$(head -v -n1 $(git diff --cached --name-only) 2> /dev/null | grep "bash" -B1 | grep "==>" | cut -d ' ' -f2)
+	if [[ ! -z $SHFILES ]]; then
+		echo "Checking style on Bash Scripts: "
+		echo $SHFILES
+		if [[ -z $(which shellcheck) ]]; then
+			echo "shellcheck is not installed. Try running this command:"
+			echo "sudo apt-get install shellcheck"
+			exit 1
+		else
+			shellcheck="$(shellcheck $SHFILES | grep '\^\-\- SC[0-9][0-9][0-9][0-9]:' )"
+			if [[ ! -z $shellcheck ]]; then
+				echo -e "\e[31mFails shell style checks:"
+				echo -e "Use --no-verify to push anyways.\e[0m"
+				EXIT=1
+			else
+				echo -e "\e[32mShell Style Checks Pass!\e[0m"
+			fi
+		fi
 	fi
-	shellcheck="$(shellcheck $SHFILES | grep '\^\-\- SC[0-9][0-9][0-9][0-9]:' )"
-	if [[ ! -z $shellcheck ]]; then
-		echo -e "\e[31mFails shell style checks:"
-		echo -e "Use --no-verify to push anyways.\e[0m"
-		git reset
-		EXIT=1
-	else
-		echo -e "\e[32mShell Style Checks Pass!\e[0m"
-	fi
-fi
+}
 ############# Check Python scripts #####################
-################ in progress... ########################
-#PYFILES=$(head -v -n1 $(git diff --cached --name-only) | grep "python" -B1 | grep "==>" | cut -d ' ' -f2)
-#if [[ ! -z $PYFILES ]]; then
-#	echo "Checking style on Python Scripts: "
-#	echo $PYFILES
-#	pep8check="$(pep8 $PYFILES | grep '\^\-\- SC[0-9][0-9][0-9][0-9]:' )"
-#	if [[ ! -z $pep8check ]]; then
-#		echo -e "\e[31mFails pep8 style checks:"
-#		echo -e "Use --no-verify to push anyways.\e[0m"
-#		git reset
-#		exit 1
-#	else
-#		echo -e "\e[32mPython Style Checks Pass!\e[0m"
-#	fi
-#fi
+py_tests(){
+	PYFILES=$(head -v -n1 $(git diff --cached --name-only) 2> /dev/null | grep "python" -B1 | grep "==>" | cut -d ' ' -f2)
+	if [[ ! -z $PYFILES ]]; then
+		echo "Checking style on Python Scripts: "
+		echo $PYFILES
+		if [[ -z $(which pep8) ]]; then
+			echo "pep8 is not installed. Try running this command:"
+			echo "sudo pip3 install pep8"
+		else
+			pep8check="$(pep8 $PYFILES)"
+			if [[ ! -z $pep8check ]]; then
+				echo -e "\e[31mFails pep8 style checks:"
+				echo -e "Use --no-verify to push anyways.\e[0m"
+				EXIT=1
+			else
+				echo -e "\e[32mPython Style Checks Pass!\e[0m"
+			fi
+		fi
+	fi
+}
+############# Check HTML styling #####################
+html_tests() {
+	HTMLFILES=$(git diff --cached --name-only 2> /dev/null | grep "\.html")
+	if [[ ! -z $HTMLFILES ]]; then
+		echo "Checking style on HTML Files: "
+		echo $HTMLFILES
+		if [[ -z "~/W3C-Validator/w3c_validator.py" ]]; then
+			echo "W3C-Validator script is not installed. Try running this command:"
+			echo "git clone https://github.com/holbertonschool/W3C-Validator.git"
+		else
+			w3c_checks="$(~/W3C-Validator/w3c_validator.py $HTMLFILES 2>&1)"
+			if [[ ! -z $w3c_checks ]]; then
+				echo -e "\e[31mFails W3C style checks:"
+				echo -e "Use --no-verify to push anyways.\e[0m"
+				EXIT=1
+			else
+				echo -e "\e[32mHTML Style Checks Pass!\e[0m"
+			fi
+		fi
+	fi
+}
+
+########################################################
+###################### Main ############################
+########################################################
+EXIT=0
+FILES=$(git diff --cached --name-only 2> /dev/null)
+if [ "$FILES" != *".c"* ] || [ "$FILES" != *".h"* ]; then
+	c_tests
+fi
+if [ "$FILES" != *".html"* ]; then
+	html_tests
+fi
+py_tests
+bash_tests
 ############# Every thing went smooth ##################
 if [[ $EXIT -eq 0 ]]; then
     exit 0
 fi
-############# Somethings messed up... ##################
+############# Something went wrong... ##################
 git reset
 exit 1
