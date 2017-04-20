@@ -32,7 +32,7 @@ sed -i 's/\#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
 echo 'export PS1="\[\e]0; \u: \W\a\]\[\033[01;40m\]\A \u:\[\033[00m\]\[\033[01;44m\]\W\[\033[00m\]~> "' >> ~/.bashrc
 echo 'export TZ="/usr/share/zoneinfo/America/Los_Angeles"' >> ~/.bashrc
 echo -e "betty() {\n    /home/$(whoami)/Betty/betty-doc.pl \$1\n     /home/$(whoami)/Betty/betty-style.pl \$1\n}\n" >> ~/.bashrc
-echo -e "htmlstyle(){\n    home/$(whoami)/W3C-Validator/w3c_validator.py \$1\n}\n" >> ~/.bashrc
+echo -e "htmlstyle(){\n    /home/$(whoami)/W3C-Validator/w3c_validator.py \$1\n}\n" >> ~/.bashrc
 #setup Git
 git config --global user.email "ian.liu-johnson@holbertonschool.com"
 git config --global user.name "Ian Liu-Johnston"
@@ -44,11 +44,22 @@ git clone https://github.com/ianliu-johnston/holbertonschool-low_level_programmi
 pushd ~/holbertonschool-low_level_programming/.git/hooks/
 git remote set-url origin git@github.com:ianliu-johnston/holbertonschool-low_level_programming.git
 ln -s ~/pre-commit .
+git submodule foreach git pull origin master
+git submodule update --init --recursive
 popd
 git clone https://github.com/ianliu-johnston/holbertonschool-higher_level_programming.git ~/holbertonschool-higher_level_programming
 pushd ~/holbertonschool-higher_level_programming/.git/hooks/
 git remote set-url origin git@github.com:ianliu-johnston/holbertonschool-higher_level_programming.git
 ln -s ~/pre-commit .
+git submodule foreach git pull origin master
+git submodule update --init --recursive
+popd
+git clone https://github.com/ianliu-johnston/holbertonschool-sysadmin_devops.git ~/holbertonschool-sysadmin_devops
+pushd ~/holbertonschool-sysadmin_devops/.git/hooks/
+git remote set-url origin git@github.com:ianliu-johnston/holbertonschool-sysadmin_devops.git
+ln -s ~/pre-commit .
+git submodule foreach git pull origin master
+git submodule update --init --recursive
 popd
 . eval $(ssh-agent -s)
 . ssh-add ~/.ssh/git
