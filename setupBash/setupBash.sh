@@ -14,6 +14,7 @@ cp bash_aliases ~/.bash_aliases
 cp emacsrc ~/.emacsrc
 cp vimrc ~/.vimrc
 cp pre-commit ~
+cp update.sh ~
 cp -r vim ~/.vim
 sed -i 's/\#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
 echo 'export PS1="\[\e]0; \u: \W\a\]\[\033[01;40m\]\A \u:\[\033[00m\]\[\033[01;44m\]\W\[\033[00m\]~> "' >> ~/.bashrc
