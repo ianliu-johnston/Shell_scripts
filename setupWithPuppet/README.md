@@ -25,4 +25,6 @@ Simply run ``vagrant up`` in the directory that contains the Vagrant file, and i
 Installs git precommit hooks, customizes git, configures a customized bash environment, customized vim environment, configures ssh to use a github key, and clones the relivent development git repositories.
 
 ##LINKS
-[Examples from Github](https://github.com/patrickdlee/vagrant-examples) -- This was a very helpful example repository to build off of.
+* [Official Puppet Documentation](https://docs.puppet.com/puppet/)
+* [Examples from Github](https://github.com/patrickdlee/vagrant-examples) -- This was a very helpful example repository to build off of.
+* [Building Docker Images with Puppet](https://puppet.com/blog/building-docker-images-puppet)
