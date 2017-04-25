@@ -33,7 +33,7 @@ echo "################################"
 echo "Installing packages"
 echo "################################"
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y upgrade
 sudo apt-get -y install emacs radare2 valgrind p7zip-full tshark shellcheck python3-pip gdb docker docker.io shellcheck
 echo "################################"
 echo "Setting up Nodejs"
