@@ -1,0 +1,8 @@
+alias gstat="git status"
+alias gadd="git add"
+alias gicom="git commit -m"
+alias gitup="git push origin master"
+alias godmode="sudo su"
+alias supergcc="gcc -Wall -Werror -Wextra -pedantic"
+alias emacs="emacs -nw"
+alias python="/usr/local/bin/python3"
