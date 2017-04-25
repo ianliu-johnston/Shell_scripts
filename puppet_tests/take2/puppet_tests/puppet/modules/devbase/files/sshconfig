@@ -1,5 +1,0 @@
-#github
-Host github.com-ianliu-johnston
-    HostName github.com
-    User git
-    IdentityFile ~/.ssh/git
