@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "This script is for customization on Lubuntu v.16.04"
 # Install all tools I need.
+if [[ $# -ne 2 ]]; then
+	echo "USAGE: ./setup_laptop.sh <email> <github username>"
 sudo apt-get update
 echo "installing utils"
 sudo apt-get install -y pavucontrol audacity ffmpeg vlc thunderbird chromium-browser tmux
@@ -44,8 +46,8 @@ echo 'export PS1="\A~ \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\0
 echo 'export TZ="/usr/share/zoneinfo/America/Los_Angeles"' >> ~/.bashrc
 echo -e "betty() {\n    /home/`whoami`/Betty/betty-doc.pl $1\n     /home/`whoami`/Betty/betty-style.pl $1\n}\n" >> ~/.bashrc
 # Setup Git
-git config --global user.email "ian.liu-johnson@holbertonschool.com"
-git config --global user.name "Ian Liu-Johnston"
+git config --global user.email "$EMAIL"
+git config --global user.name "$GITHUB_NAME"
 if [ ! -a ~/.ssh ]; then
 		mkdir ~/.ssh
 fi

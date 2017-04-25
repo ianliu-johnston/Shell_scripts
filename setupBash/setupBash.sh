@@ -1,6 +1,13 @@
 #!/bin/bash
-DEFAULT_EMAIL="ian.liu-johnson@holbertonschool.com"
-DEFAULT_NAME="ianliu-johnston"
+if [[ $# -eq 2 ]]; then
+	echo "Using custom name and emails for configuring git"
+	DEFAULT_EMAIL="$1"
+	DEFAULT_NAME="$2"
+else
+	echo "Using default name and emails for configuring git"
+	DEFAULT_EMAIL="ian.liu-johnson@holbertonschool.com"
+	DEFAULT_NAME="ianliu-johnston"
+fi
 MYSQL_APT=mysql-apt-config_0.8.3-1_all.deb
 echo "###############################################################"
 echo "Default setup for Ian Liu-Johnston's development environment for Holberton School."
