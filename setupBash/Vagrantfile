@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$script = <<SCRIPT
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get upgrade
+apt-get install -y git
+git clone https://github.com/ianliu-johnston/BatchScripts.git
+pushd BatchScripts/setupBash
+./setupBash.sh
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.hostname = "concatidev"
+  config.vm.provision "shell", inline: $script
+end
