@@ -25,7 +25,7 @@ echo "Configuring Git"
 echo "################################"
 git config --global user.email $DEFAULT_EMAIL
 git config --global user.name $DEFAULT_NAME
-if [ ! -a ~/.ssh ]; then
+if [ -z ~/.ssh ]; then
 	mkdir ~/.ssh
 fi
 cat config >> ~/.ssh/config
@@ -46,8 +46,8 @@ echo "Default MySQL installation is" $MYSQL_APT
 echo "################################"
 wget https://dev.mysql.com/get/$MYSQL_APT
 sudo dpkg -i $MYSQL_APT
-echo mysql-server mysql-server/root_password select faker | debconf-set-selections
-echo mysql-server mysql-server/root_password_again select faker | debconf-set-selections
+echo mysql-server mysql-server/root_password select faker | sudo debconf-set-selections
+echo mysql-server mysql-server/root_password_again select faker | sudo debconf-set-selections
 sudo apt-get update
 sudo apt-get install -y mysql-server
 rm $MYSQL_APT
