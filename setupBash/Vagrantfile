@@ -7,8 +7,6 @@ apt-get update
 apt-get upgrade
 apt-get install -y git
 git clone https://github.com/ianliu-johnston/BatchScripts.git
-pushd BatchScripts/setupBash
-./setupBash.sh
 SCRIPT
 
 Vagrant.configure("2") do |config|
