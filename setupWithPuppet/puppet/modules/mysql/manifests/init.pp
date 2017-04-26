@@ -8,7 +8,7 @@ class mysql {
     path           => ['/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'];
   }
   exec { 'dpkg apt_repo':
-    environment    => ['DEBIAN_FRONTEND=noninteractive'],
+#    environment    => ['DEBIAN_FRONTEND=noninteractive'],
     command        => 'dpkg -i /tmp/mysql-apt-config_0.8.4-1_all.deb',
     path           => ['/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'],
     require        => Exec['wget sql_apt'],
@@ -34,6 +34,6 @@ class mysql {
   }
   service { 'mysql':
     ensure  => running,
-    require => Package['mysql-server'];
+    require => Package['mysql-server'],
   }
 }
