@@ -83,29 +83,22 @@ git clone https://github.com/$DEFAULT_NAME/holbertonschool-low_level_programming
 pushd ~/holbertonschool-low_level_programming/.git/hooks/
 git remote set-url origin git@github.com:$DEFAULT_NAME/holbertonschool-low_level_programming.git
 ln -s ~/pre-commit .
-git submodule foreach git pull origin master
-git submodule update --init --recursive
 popd
 git clone https://github.com/$DEFAULT_NAME/holbertonschool-higher_level_programming.git ~/holbertonschool-higher_level_programming
 pushd ~/holbertonschool-higher_level_programming/.git/hooks/
 git remote set-url origin git@github.com:$DEFAULT_NAME/holbertonschool-higher_level_programming.git
 ln -s ~/pre-commit .
-git submodule foreach git pull origin master
-git submodule update --init --recursive
 popd
 git clone https://github.com/$DEFAULT_NAME/holbertonschool-sysadmin_devops.git ~/holbertonschool-sysadmin_devops
 pushd ~/holbertonschool-sysadmin_devops/.git/hooks/
 git remote set-url origin git@github.com:$DEFAULT_NAME/holbertonschool-sysadmin_devops.git
 ln -s ~/pre-commit .
-git submodule foreach git pull origin master
-git submodule update --init --recursive
 popd
 git clone https://github.com/$DEFAULT_NAME/AirBnb_clone_v3 ~/AirBnb_clone_v3
 pushd ~/AirBnb_clone_v3/.git/hooks/
 git remote set-url origin git@github.com:$DEFAULT_NAME/AirBnb_clone_v3.git
 ln -s ~/pre-commit .
-git submodule foreach git pull origin master
-git submodule update --init --recursive
 popd
+git submodule update --init --recursive
 . eval $(ssh-agent -s)
 . ssh-add ~/.ssh/git
