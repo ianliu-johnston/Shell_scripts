@@ -46,8 +46,9 @@ sudo apt-get -y install emacs radare2 valgrind p7zip-full tshark shellcheck pyth
 echo "################################"
 echo "Setting up Nodejs"
 echo "################################"
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
-sudo apt-get install -y npm
+sudo npm install semistandard --global
 echo "################################"
 echo "Setting up Mysql, default password is 'faker'"
 echo "Default MySQL installation is" $MYSQL_APT

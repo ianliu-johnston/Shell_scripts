@@ -98,6 +98,28 @@ html_tests() {
 	fi
 }
 
+############# Check Javascript styling #####################
+JS_tests() {
+	JSFILES=$(git diff --cached --name-only 2> /dev/null | grep "\.js")
+	if [[ ! -z $JSFILES ]]; then
+		echo "Checking style on Javascript Files: "
+		echo $JSFILES
+		if [[ -z "$(which semistandard)" ]]; then
+			echo "Semistandard is not installed. Use the following command to install:"
+			echo "sudo npm install semistandard --global"
+		else
+			semistd_checks="$(semistandard --fix $JSFILES --global $ 2>&1)"
+			echo semistd_checks
+			if [[ ! -z $semistd_checks ]]; then
+				echo -e "\e[31mFails Semistandard style checks:"
+				echo -e "Use --no-verify to push anyways.\e[0m"
+				EXIT=1
+			else
+				echo -e "\e[32mSemistandard Style Checks Pass!\e[0m"
+			fi
+		fi
+	fi
+}
 ########################################################
 ###################### Main ############################
 ########################################################
@@ -108,6 +130,9 @@ if [ "$FILES" != *".c"* ] || [ "$FILES" != *".h"* ]; then
 fi
 if [ "$FILES" != *".html"* ]; then
 	html_tests
+fi
+if [ "$FILES" != *".js"* ]; then
+	JS_tests
 fi
 py_tests
 bash_tests
