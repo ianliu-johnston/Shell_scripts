@@ -79,26 +79,52 @@ echo "Git Cloning Style Checking programs"
 echo "################################"
 git clone https://github.com/holbertonschool/Betty.git ~/Betty
 git clone https://github.com/holbertonschool/W3C-Validator.git ~/W3C-Validator
+echo "################################"
+echo "cloning low level programming"
+echo "################################"
 git clone https://github.com/$DEFAULT_NAME/holbertonschool-low_level_programming.git ~/holbertonschool-low_level_programming
 pushd ~/holbertonschool-low_level_programming/.git/hooks/
 git remote set-url origin git@github.com:$DEFAULT_NAME/holbertonschool-low_level_programming.git
 ln -s ~/pre-commit .
 popd
+pushd ~/holbertonschool-low_level_programming.git/
+git submodule update --init --recursive
+popd
+echo "################################"
+echo "cloning higher level programming"
+echo "################################"
 git clone https://github.com/$DEFAULT_NAME/holbertonschool-higher_level_programming.git ~/holbertonschool-higher_level_programming
 pushd ~/holbertonschool-higher_level_programming/.git/hooks/
 git remote set-url origin git@github.com:$DEFAULT_NAME/holbertonschool-higher_level_programming.git
 ln -s ~/pre-commit .
 popd
+pushd ~/holbertonschool-sysadmin_devops/
+git submodule update --init --recursive
+popd
+echo "################################"
+echo "cloning sysadmin devops"
+echo "################################"
 git clone https://github.com/$DEFAULT_NAME/holbertonschool-sysadmin_devops.git ~/holbertonschool-sysadmin_devops
 pushd ~/holbertonschool-sysadmin_devops/.git/hooks/
 git remote set-url origin git@github.com:$DEFAULT_NAME/holbertonschool-sysadmin_devops.git
 ln -s ~/pre-commit .
 popd
-git clone https://github.com/$DEFAULT_NAME/AirBnb_clone_v3 ~/AirBnb_clone_v3
-pushd ~/AirBnb_clone_v3/.git/hooks/
-git remote set-url origin git@github.com:$DEFAULT_NAME/AirBnb_clone_v3.git
+pushd ~/holbertonschool-sysadmin_devops/
+git submodule update --init --recursive
+popd
+echo "################################"
+echo "Cloning Air BnB project"
+echo "################################"
+git clone https://github.com/$DEFAULT_NAME/AirBnb_clone_v3 ~/AirBnb_clone_v4
+pushd ~/AirBnB_clone_v4/.git/hooks/
+git remote set-url origin git@github.com:$DEFAULT_NAME/AirBnb_clone_v4.git
 ln -s ~/pre-commit .
 popd
+pushd ~/AirBnB_clone_v4/
 git submodule update --init --recursive
+popd
+echo "################################"
+echo "Setting up ssh agent"
+echo "################################"
 . eval $(ssh-agent -s)
 . ssh-add ~/.ssh/git
