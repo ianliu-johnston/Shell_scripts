@@ -6,7 +6,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get upgrade
 apt-get install -y git
-git clone https://github.com/ianliu-johnston/BatchScripts.git
+git clone https://github.com/ianliu-johnston/Shell_scripts.git
 SCRIPT
 
 Vagrant.configure("2") do |config|
