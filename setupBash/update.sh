@@ -1,11 +1,10 @@
-#!/bin/bash
-## Recursively pulls all git repositories.
-## Optionally takes 1 argument to ignorea directory
-## Will extend functionality later
-find . -type d -name ".git" -printf "%P\n" | grep -v $1 | rev | cut -d '/' -f2- | rev > tmp
+#!/usr/bin/env bash
+TMP_FILE=tmp$(date +%s)
+find . -type d -name ".git" -printf "%P\n" | grep -v BKUP | rev | cut -d '/' -f2- | rev >  $TMP_FILE
 while read LINE; do
 	pushd $LINE
 	git pull
+	git submodule update --init --recursive
 	popd
-done < tmp
-rm tmp
+done < $TMP_FILE
+rm $TMP_FILE
