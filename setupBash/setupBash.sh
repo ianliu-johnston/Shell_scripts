@@ -19,7 +19,7 @@ echo "################################"
 echo "Setting up Bash, vim and emacs customizations"
 echo "################################"
 cp bash_aliases ~/.bash_aliases
-cp emacsrc ~/.emacsrc
+cp emacs ~/.emacs
 cp vimrc ~/.vimrc
 cp pre-commit ~
 cp update.sh ~
