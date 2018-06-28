@@ -18,7 +18,7 @@ popd
 pushd /home/concati/bin/
 ln -s /home/concati/Shell_scripts/jq jq;
 ln -s /home/concati/Shell_scripts/setupvenv/setup_venv.sh setup_venv
-ln -s /home/concati/Shell_scripts/goto/goto.py goto
+ln -s /home/concati/Shell_scripts/goto/goto.py goto.py
 popd
 "
 apt-get update
